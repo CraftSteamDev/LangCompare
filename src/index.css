@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
 #main-container {
-  height: 100vh;
+  height: 95vh;
   padding: 2px;
 }
 
 .code-box {
   resize: none;
+  max-width: 43vw;
 }

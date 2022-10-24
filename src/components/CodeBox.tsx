@@ -39,7 +39,7 @@ function CodeBox(props: CodeProps) {
           }
         }}
       />
-      <pre className="h-3/4">
+      <pre className="h-3/4 code-box">
         <code className="language-javascript select-all">{getText()}</code>
       </pre>
     </>

@@ -24,24 +24,36 @@ function App() {
   }
 
   function addLang(key: string, lang: string) {
-    const obj = JSON.parse(compareLang!!)
+    const obj = JSON.parse(compareLang!!);
     obj[key] = lang;
-    setCompareText(JSON.stringify(obj, null, 2))
+    setCompareText(JSON.stringify(obj, null, 2));
   }
 
   return (
-    <div id="main-container" className="container mx-auto grid grid-rows-2">
-      <div className="columns-2">
-        <div className="w-full h-full">
-          <CodeBox text={masterLang} setText={setMasterText} />
+    <div className="mx-auto content-center">
+      <div id="main-container" className="container mx-auto grid grid-rows-2">
+        <div className="columns-2">
+          <div className="w-full h-full">
+            <CodeBox text={masterLang} setText={setMasterText} />
+          </div>
+          <div className="w-full h-full">
+            <CodeBox text={compareLang} setText={setCompareText} />
+          </div>
         </div>
-        <div className="w-full h-full">
-          <CodeBox text={compareLang} setText={setCompareText} />
-        </div>
+        {valid(masterLang) && valid(compareLang) ? (
+          <DisplayBox keys={findMissingKeys()} addLang={addLang} />
+        ) : null}
       </div>
-      {valid(masterLang) && valid(compareLang) ? (
-        <DisplayBox keys={findMissingKeys()} addLang={addLang} />
-      ) : null}
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded content-center"
+        onClick={() => {
+          if (compareLang !== null) {
+            navigator.clipboard.writeText(compareLang);
+          }
+        }}
+      >
+        Copy Lang File
+      </button>
     </div>
   );
 }
