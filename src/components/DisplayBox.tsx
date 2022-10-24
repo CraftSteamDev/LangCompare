@@ -24,7 +24,7 @@ function DisplayBox(props: DisplayProps) {
                     formData.set(entry[0].toString(), event.target.value)
                   )
                 }
-                defaultValue={entry[1]}
+                placeholder={entry[1]}
               />
               <button
                 onClick={(event) => {
