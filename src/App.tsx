@@ -11,13 +11,14 @@ function App() {
     return !(input === null || input?.length === 0);
   }
 
-  function findMissingKeys(): Array<string> {
-    const missingKeys = [];
-    const masterKeys = Object.keys(JSON.parse(masterLang!!));
+  function findMissingKeys(): Array<[string, string]> {
+    const missingKeys: Array<[string, string]> = [];
+    const masterObj = JSON.parse(masterLang!!);
+    const masterKeys = Object.keys(masterObj);
     const compareKeys = Object.keys(JSON.parse(compareLang!!));
     for (const key of masterKeys) {
       if (!compareKeys.includes(key)) {
-        missingKeys.push(key);
+        missingKeys.push([key, masterObj[key]]);
       }
     }
     return missingKeys;
